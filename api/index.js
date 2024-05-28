@@ -4,6 +4,7 @@ const cors = require("cors");
 const session = require("express-session");
 const mysql = require("mysql");
 const bcrypt = require("bcrypt");
+const { json } = require("sequelize");
 app = express();
 app.use(express.json());
 
@@ -24,7 +25,18 @@ app.post("/createuser", async (req, res) => {
   await db.getConnection(async (err, connection) => {
     if (err) {
       console.log(err);
-      res.status(500).send("err connecting to database");
+      res.status(500);
+      if (err) {
+        throw err;
+      }
+
+      try {
+      } catch (err) {
+        console.log(err);
+        res.status(500).send("error login user");
+        connection.release();
+      }
+      res.send("err connecting to database");
     }
     try {
       const sqlSearch = "SELECT * FROM userInfo WHERE userName = ?";
@@ -62,6 +74,46 @@ app.post("/createuser", async (req, res) => {
       console.err(err);
       res.status(500).send("error creating user");
     }
+  });
+});
+// login authentication
+app.post("/login", async (req, res, err) => {
+  const user = req.body.name;
+  const password = req.body.password;
+
+  await db.getConnection(async (err, connection) => {
+    if (err) {
+      console.log(err);
+      res.status(500);
+    }
+    const sqlSearch = "SELECT * FROM userInfo WHERE userName = ? ";
+    const searchQuery = mysql.format(sqlSearch, [user]);
+    connection.query(searchQuery, async (err, results) => {
+      if (err) {
+        throw err;
+      }
+      try {
+        if (results.length == 0) {
+          console.log("User doesn't exists");
+          res.sendStatus(404);
+        } else {
+          const hashedPassword = results[0].userPassword;
+
+          if (await bcrypt.compare(password, hashedPassword)) {
+            console.log("sucessfully logged");
+            res.send("sucessfully logged");
+            connection.release();
+          } else {
+            console.log("Password incorrect");
+            connection.release();
+          }
+        }
+      } catch (err) {
+        console.log(err);
+        connection.release();
+      }
+    });
+    connection.release();
   });
 });
 
