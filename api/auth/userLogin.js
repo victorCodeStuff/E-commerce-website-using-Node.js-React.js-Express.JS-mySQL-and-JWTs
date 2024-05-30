@@ -1,14 +1,19 @@
-const bcrypt = require("bcrypt")
-const db = require("../config/Database")
-const mysql = require("mysql")
-const generateAccessToken = require("../common/generateAcessToken")
-const session = require('express-session');
+const bcrypt = require("bcrypt");
+const db = require("../config/Database");
+const mysql = require("mysql");
+const generateAccessToken = require("../common/generateAcessToken");
+const cookie = require("cookie-parser");
 
-async function userLogin (){
-app.post("/login", async (req, res, err) => {
+async function userLogin() {
+  app.post("/login", async (req, res, err) => {
     const user = req.body.name;
     const password = req.body.password;
-  
+    const options = {
+      maxAge: 1000 * 60 * 15, // Expires in 15 minutes
+      httpOnly: true,
+      secure: true,
+    };
+
     await db.getConnection(async (err, connection) => {
       if (err) {
         console.log(err);
@@ -23,30 +28,33 @@ app.post("/login", async (req, res, err) => {
         try {
           if (results.length == 0) {
             console.log("User doesn't exists");
-            res.sendStatus(404);
+            res.send("User doesn't exists");
           } else {
             const hashedPassword = results[0].userPassword;
-  
+
             if (await bcrypt.compare(password, hashedPassword)) {
               const token = generateAccessToken({ username: req.body.name });
-              console.log("sucessfully logged\n your token is:"+ token);
-              res.send("Sucessfully logged and your login token is:"+token);
-              
+              console.log("sucessfully logged\nyour token is:" + token);
+              res.cookie("acessToken", token, options);
+              res.json({
+                message: "Sucessfully logged",
+                token: token,
+              });
+
               connection.release();
             } else {
               const passErrMessage = "Incorrect Password";
               console.log(passErrMessage);
-
               res.send(passErrMessage);
               connection.release();
             }
-  
+
             connection.release();
           }
           connection.release();
         } catch (err) {
           console.log(err);
-  
+
           connection.release();
         }
       });
@@ -55,4 +63,4 @@ app.post("/login", async (req, res, err) => {
   });
 }
 
-module.exports = userLogin
+module.exports = userLogin;

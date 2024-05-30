@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt")
 const db = require("../config/Database")
 const mysql = require("mysql")
 
-
 async function userCreation (){
     app.post("/createuser", async (req, res) => {
         const user = req.body.name;
