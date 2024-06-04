@@ -1,0 +1,44 @@
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+ul{
+  list-style: none;
+}
+#dashboard{
+  height:70vh;
+  width: 70vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%); 
+  border: 3px solid black;
+  border-radius: 8px; 
+  display: flex;
+  flex-direction: column;
+
+}
+#dashboardWrapper{
+  background-color: black;
+  height: 900px;
+  display: flex;
+  flex: column;
+
+
+}
+
+#userContainer{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: left;
+  gap: 40px;
+ 
+}
+#dashboard > div{
+  height: 40px;
+}
+#userPhotoSlide,#userNameContainer,#changeUserNameButton,#logoutButton{
+  
+}

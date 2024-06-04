@@ -13,7 +13,8 @@ async function userLogin() {
       httpOnly: true,
       secure: true,
     };
-
+    userStatus = false
+   
     await db.getConnection(async (err, connection) => {
       if (err) {
         console.log(err);
@@ -36,9 +37,12 @@ async function userLogin() {
               const token = generateAccessToken({ username: req.body.name });
               console.log("sucessfully logged\nyour token is:" + token);
               res.cookie("acessToken", token, options);
+              userStatus = true
               res.json({
                 message: "Sucessfully logged",
                 token: token,
+                userStatus
+            
               });
 
               connection.release();
