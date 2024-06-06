@@ -3,7 +3,7 @@ const userCreation = require("./auth/userCreation.js");
 const userLogin = require("./auth/userLogin.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-
+const verifyToken = require("./auth/verifyToken.js")
 app = express();
 app.use(express.json());
 app.use( cors({
@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 userCreation(app);
 userLogin(app);
-
+verifyToken(app)
 app.get("/",(req,res)=>{
   
   res.send("hello")

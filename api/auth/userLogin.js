@@ -5,7 +5,8 @@ const generateAccessToken = require("../common/generateAcessToken");
 const cookie = require("cookie-parser");
 
 async function userLogin() {
-  app.post("/login", async (req, res, err) => {
+  app.post("/login", async (req, res, err) => 
+  {
     const user = req.body.name;
     const password = req.body.password;
     const options = {
@@ -36,7 +37,7 @@ async function userLogin() {
             if (await bcrypt.compare(password, hashedPassword)) {
               const token = generateAccessToken({ username: req.body.name });
               console.log("sucessfully logged\nyour token is:" + token);
-              res.cookie("acessToken", token, options);
+              
               userStatus = true
               res.json({
                 message: "Sucessfully logged",
