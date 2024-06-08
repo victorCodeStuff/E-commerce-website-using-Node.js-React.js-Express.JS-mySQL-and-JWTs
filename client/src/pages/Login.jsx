@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "../utils/utils";
+
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -19,7 +19,6 @@ export default function Login() {
     axios.post("http://localhost:3000/login", logRequest).then((response) => {
       let token = response.data.token;
       document.cookie = `token=${token}`;
-      getToken();
       //if the user was authenticated he will be redirected
       if(token){
         navigate("/dashboard");
