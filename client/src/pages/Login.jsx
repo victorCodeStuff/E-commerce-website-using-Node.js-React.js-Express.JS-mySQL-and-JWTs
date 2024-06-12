@@ -10,7 +10,6 @@ export default function Login() {
 
     const loginUserName = event.target.elements.loginUserName.value;
     const loginUserPassword = event.target.elements.loginUserPassword.value;
-    console.log(loginUserName + "\n" + loginUserPassword);
     const logRequest = {
       name: loginUserName,
       password: loginUserPassword,

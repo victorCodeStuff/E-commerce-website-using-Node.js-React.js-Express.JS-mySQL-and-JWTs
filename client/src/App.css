@@ -1,12 +1,103 @@
+
 nav {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+  position: fixed;
+  top:0;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 10px 0px  10px 0px;
+  border-bottom: 5px solid black;
+  transition: 1s;
 }
 ul{
   list-style: none;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 100%;
 }
-#dashboard{
+
+form{
+  width: 100px;
+}
+#principalRoutes{
+  justify-content: space-between;
+  padding:0px;
+  
+  }
+#principalRoutes > li > a{
+  color: black;
+  font-size: 20px;
+  text-decoration: none;  
+}
+#principalRoutes > li > a:hover{
+  text-decoration: underline;
+}
+#shopName{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items:center ;
+  
+}
+#shopName> h1, #shopName > p{
+  margin: 0px;
+
+  
+}
+#shopName > p{
+  font-size: 10px;
+}
+#searchWrapper{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+  #navSearchInput{
+    width: 200px;
+    height: 30px;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    padding:1px;
+    align-items: center;
+    border-radius:30px;
+  }
+  #navSearchInput > input{
+    width: 70%;
+    height: 20px;
+    border: 2px solid black;
+    border-radius:30px;
+   
+    color: black;    
+
+  }
+ ::placeholder{
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-family: 'oswald';
+  }
+#userIcons{
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+  padding: 0px;
+}
+  #userIcons > li > svg{
+ color: black;
+ }
+#userIcons > li > svg:hover{
+  color: rgb(79, 79, 79);
+ 
+ }
+
+
+  #dashboard{
   height:70vh;
   width: 70vw;
   position: absolute;
@@ -38,7 +129,4 @@ ul{
 }
 #dashboard > div{
   height: 40px;
-}
-#userPhotoSlide,#userNameContainer,#changeUserNameButton,#logoutButton{
-  
 }

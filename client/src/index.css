@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
 html {
-  height: 90vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   margin: 0;
-  align-items: centers;
+  border: 100;
+  align-items: center;
+
 }
 
 html {
@@ -13,4 +17,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
+  margin: 0;
+  font-family: 'oswald';
 }
+

@@ -50,8 +50,11 @@ async function userCreation (){
                     throw err;
                   }
                   console.log("New User Created");
-                  console.log("his id is:", result.insertId);
-                  res.send("User Created Sucessfully");
+                  const userId = result.insertId
+                  console.log("his id is:", userId);
+                  res.json(
+                   userId
+                  );
                 });
               }
               connection.release();
