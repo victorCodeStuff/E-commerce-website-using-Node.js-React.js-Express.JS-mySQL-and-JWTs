@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import axios from "axios";
 import Cookie from "js-cookie";
 import React from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Create from "./pages/Create";
 import AboutMe from "./pages/AboutMe";
@@ -14,9 +15,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import Product from "./pages/productpage";
+
 
 let currentResponse = true;
-
 async function getResponse() {
   const token = Cookie.get("token");
   currentResponse = await axios.post("http://localhost:3000/verifyToken", {
@@ -25,9 +27,10 @@ async function getResponse() {
 }
 
 function App() {
-  let location = useLocation();
   const navigate = useNavigate();
-  React.useEffect(() => {
+  let location = useLocation();
+  useEffect(() => {
+ 
     let currentToken = Cookie.get("token");
     console.log("Route changed to:", location.pathname);
     if (
@@ -36,11 +39,12 @@ function App() {
       location.pathname !== "/createuser"
     ) {
       try {
-        getResponse();
+        setTimeout(getResponse, 200)
+   
         var userStatus = currentResponse;
         console.log("userStatus", userStatus.data);
         if (userStatus.data) {
-          console.log("User is logged", userStatus.data);
+          console.log(userStatus.data);
         } else if (currentToken) {
           console.log("sdfsdfsdf");
           userStatus = false;
@@ -52,6 +56,8 @@ function App() {
     }
   }, [location]);
 
+  
+
   return (
     <>
       <nav>
@@ -61,7 +67,7 @@ function App() {
           </li>
 
           <li>
-            <Link to="./aboutme">about me</Link>
+            <Link to="./product">about me</Link>
           </li>
         </ul>
         <div id="shopName">
@@ -83,6 +89,8 @@ function App() {
           </li>
         </ul>
       </nav>
+      <div id="contentWrapper">
+
       <Routes>
         <Route
           path="/"
@@ -93,7 +101,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/aboutme" element={<AboutMe />}></Route>
+        <Route path="/product" element={<Product/>}></Route>
       </Routes>
+      </div>
     </>
   );
 }
