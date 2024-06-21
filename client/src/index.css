@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
-
+*{
+  transition: 0.2s;
+}
 html {
   height: 100%;
   width: 100%;
   margin: 0;
   border: 100;
   align-items: center;
-
+ 
 }
 
 html {

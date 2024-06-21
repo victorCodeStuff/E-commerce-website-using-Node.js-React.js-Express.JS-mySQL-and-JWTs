@@ -39,7 +39,7 @@ function App() {
       location.pathname !== "/createuser"
     ) {
       try {
-        setTimeout(getResponse, 200)
+        getResponse()
    
         var userStatus = currentResponse;
         console.log("userStatus", userStatus.data);

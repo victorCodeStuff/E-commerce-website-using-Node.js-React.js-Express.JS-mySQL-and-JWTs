@@ -3,11 +3,45 @@ import { useEffect, useState } from "react";
 
 const Product = () => {
   const [products, setProducts] = useState([true]);
-  const [isCheckedAll, setIsCheckedAll] = useState(true);
+  const [selectedIds, setSelectedIds]= useState([])
+
+  var currentCategories = [
+    {
+      name: "All",
+      value: "All",
+    },
+    {
+      name: "Literature & Fiction",
+    },
+    {
+      name: "Programming",
+    },
+    {
+      name: "Manga & Comics",
+    },
+    {
+      name: "Fantasy",
+    },
+    {
+      name: "Poetry",
+    },
+  ];
+
+  var filteringSystem = [
+    "Manga & Comics",
+    "Programming",
+    "Poetry",
+    "Literature & Fiction",
+    "Fantasy",
+  ];
+
   useEffect(() => {
+
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/products");
+        const response = await axios.get("http://localhost:3000/products", {
+          params: { filteringSystem },
+        });
         setProducts(response.data);
       } catch (error) {
         console.error("error fetching data:", error);
@@ -16,68 +50,34 @@ const Product = () => {
 
     fetchData();
   }, []);
-const handleChange =(event)=>{
-  const allCheck = document.getElementById("allCheck")
-  const checkBoxes = document.getElementsByClassName("checkboxes")
-  setIsCheckedAll(event.target.checked)
-  if (allCheck.checked){
-    checkBoxes.checked = false
+
+  const handleCheckBoxesChanges = (event)=>{
+    const checkedId = event.target.value;
+    if (event.target.checked){
+      setSelectedIds([...selectedIds,checkedId])
+    }
+    else{
+      setSelectedIds(selectedIds.filter(id => id !== checkedId))
+    }
   }
-}
 
   return (
     <>
       <div id="filterDiv">
-        <p>CHOOSE THE CATEGORY OF THE BOOK:</p>
-        <label>
-          <input
-            onChange={handleChange}
-            type="checkbox"
-            className="allCheck"
-            id="allCheck"
-            checked={isCheckedAll}
-          />
-          All
-        </label>
-        <label></label>
-        <label>
-          <input
-            type="checkbox"
-            value="text"
-            className="checkboxes"
-            name="checkboxes"
-       
-          />
-          Literature & Fiction
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="text"
-            className="checkboxes"
-            name="checkboxes"
-                />
-          Poetry
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            value="text"
-            className="checkboxes"
-            name="checkboxes"
-          />
-          Programming
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            name="checkboxes"
-            value="text"
-            className="checkboxes"
-          />
-          Fantasy
-        </label>
+        {currentCategories.map((categories) => (
+          <label key={categories.name}>
+            <input
+              type="checkbox"
+              value={categories.name}
+              id={categories.name}
+              checked={selectedIds.includes(categories.name)}
+              onChange={(event)=> {handleCheckBoxesChanges(event)}}
+            />
+            {categories.name}
+          </label>
+        ))}
       </div>
+
       <div className="productsPage">
         {products.map((item) => (
           <div className="productsContainer" key={item.id}>
