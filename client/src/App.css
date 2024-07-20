@@ -97,7 +97,14 @@ form{
   color: rgb(79, 79, 79);
  
  }
+#userIconUser > div{
+  display: none;
+}
 
+#userIconUser:hover{
+  display: block;
+  z-index: 1;  
+}
 
   #dashboard{
   height:70vh;

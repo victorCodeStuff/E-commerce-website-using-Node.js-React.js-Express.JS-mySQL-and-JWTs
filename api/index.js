@@ -5,6 +5,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const verifyToken = require("./auth/verifyToken.js")
 const queryProduct = require("./common/products.js")
+const queryProductDetails = require("./common/productDetails.js")
+
 app = express();
 app.use(express.json());
 
@@ -17,8 +19,9 @@ app.use( cors({
 
 userCreation(app);
 userLogin(app);
-verifyToken(app)
-queryProduct(app)
+verifyToken(app);
+queryProduct(app);
+queryProductDetails(app);
 app.get("/",(req,res)=>{
   
   res.send("hello")
