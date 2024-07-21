@@ -3,8 +3,10 @@ const db = require("../config/Database");
 
 async function  queryProductsDetails() {
   app.get("/productsdetails", async (req, res) => {
-     const productId = req.query.productId;
-// if you want to test this through POSTMAN change "query" to body
+
+    const productId = req.query.productId;
+
+// if you want to test this through POSTMAN change "body" to body
      console.log(productId)
     const sql = "SELECT * FROM userDB.products WHERE id = ?";
     try {

@@ -5,7 +5,7 @@ async function queryProducts() {
     const categoriesApplied = req.query.filteringSystem;
     const placeholders = Array(categoriesApplied.length).fill('?').join(', ');
     const sql = `SELECT * FROM userDB.products WHERE category IN (${placeholders})`;
-    console.log(placeholders)
+   
 
     try {
       const [results] = await db.promise().query(sql, categoriesApplied);
