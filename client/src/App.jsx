@@ -46,8 +46,8 @@ function App() {
         console.log("userStatus", userStatus.data);
         if (userStatus.data) {
           console.log(userStatus.data);
-          console.log("22222")
-        } else if (!currentToken) {
+        
+        } else if (!(currentToken)) {
           console.log("sdfsdfsdf");
           userStatus = false;
           navigate("/login");
@@ -109,7 +109,7 @@ function App() {
         <Route path="/search" element={<Search />}></Route>
         <Route path="/aboutme" element={<AboutMe />}></Route>
         <Route path="/product" element={<Product/>}></Route>
-        <Route path="/product/:productId" element={<ProductDetails/>}></Route>
+        <Route path="/product/:productId/:productName" element={<ProductDetails/>}></Route>
       </Routes>
       </div>
     </>

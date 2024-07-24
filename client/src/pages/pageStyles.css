@@ -60,6 +60,22 @@
     height: 10px;
 }
 
+#productWrapper{
+    width: 90%;
+    height: 80%;
+    border: 3px solid black;
+
+
+}
+.productImage , .productInfo{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    border: 3px solid black;
+}
+
+
+
 @media only screen and (max-width:1100px){
     .productsPage{
         grid-template-columns: auto auto;
@@ -73,7 +89,7 @@
     }
     #contentWrapper{
         flex-direction: column;
-       justify-content: space-between;
+       justify-content:space-between;
        align-items: center;
     }
     #filterDiv{

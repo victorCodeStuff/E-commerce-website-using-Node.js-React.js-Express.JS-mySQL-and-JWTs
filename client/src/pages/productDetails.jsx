@@ -2,12 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Product from "./productpage";
-
 function ProductDetails() {
   const [product, setProduct] = useState([]);
-
-  var productId = ["4"];
+  const { productName } = useParams();
+  const { productId } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,11 +14,11 @@ function ProductDetails() {
           "http://localhost:3000/productsdetails",
           {
             params: {
-              productId,
+              productName: productName,
+              productId: productId,
             },
           }
         );
-        console.log(JSON.stringify(response.data.productsName));
         setProduct(response.data);
       } catch (error) {
         console.error("error fetching data:", error);
@@ -29,14 +27,20 @@ function ProductDetails() {
 
     fetchData();
   }, []);
-  var productInfo = product[0]
-
+  const productInfo = product[0];
+  console.log(productInfo.productsName);
   return (
     <>
-      <div>
-        {product.map((singleProduct) => (
-          <p key={singleProduct.productsName}>{singleProduct.productsName}</p>
-        ))}
+      <div id="productWrapper">
+        <div>
+          <div className="productImage">
+            <img
+              src={`/productsImages/product${productInfo.id}/product_1.jpg`}
+            ></img>
+          </div>
+          <div className="productInfo"></div>
+        </div>
+        <div id="productDesc"></div>
       </div>
     </>
   );

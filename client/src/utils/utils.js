@@ -15,7 +15,6 @@ const Redirecting = () => {
     
   }
   console.log("dd")
-redirect()
 };
 
 export async function verifyToken() {
