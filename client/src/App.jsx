@@ -8,6 +8,7 @@ import Product from "./pages/productpage";
 import Create from "./pages/Create";
 import AboutMe from "./pages/AboutMe";
 import Search from "./pages/Search";
+
 import axios from "axios";
 import Cookie from "js-cookie";
 import React from "react";
@@ -17,7 +18,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-
 
 let currentResponse = true;
 async function getResponse() {
@@ -30,6 +30,7 @@ async function getResponse() {
 function App() {
   const navigate = useNavigate();
   let location = useLocation();
+  
   useEffect(() => {
  
     let currentToken = Cookie.get("token");
@@ -47,7 +48,7 @@ function App() {
         if (userStatus.data) {
           console.log(userStatus.data);
         
-        } else if (!(currentToken)) {
+        } else if (!currentToken) {
           console.log("sdfsdfsdf");
           userStatus = false;
           navigate("/login");
@@ -56,9 +57,7 @@ function App() {
         console.error("Error:", error);
       }
     }
-  }, [location]);
-
-  
+  }, [location])
 
   return (
     <>
@@ -106,7 +105,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/createuser" element={<Create />}></Route>
         <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/search" element={<Search />}></Route>
+        <Route path="/search/:searchKeyWord" element={<Search />}></Route>
         <Route path="/aboutme" element={<AboutMe />}></Route>
         <Route path="/product" element={<Product/>}></Route>
         <Route path="/product/:productId/:productName" element={<ProductDetails/>}></Route>

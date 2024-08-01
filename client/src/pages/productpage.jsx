@@ -46,10 +46,8 @@ const Product = () => {
         setProducts(response.data);
       } catch (error) {
         console.error("error fetching data:", error);
-      }
-    };
-
-    fetchData();
+      }};
+fetchData();
   }, []);
 
   const handleCheckBoxesChanges = (event) => {
@@ -72,6 +70,7 @@ const Product = () => {
   };
   return (
     <>
+    <div className="productWrapper">
       <div id="filterDiv">
         {currentCategories.map((categories) => (
           <label key={categories.name}>
@@ -111,7 +110,9 @@ const Product = () => {
           </div>
         ))}
       </div>
-    </>
+    
+    </div>
+      </>
   );
 };
 

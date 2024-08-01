@@ -1,20 +1,14 @@
-
-
-
 .productsPage{
     display: grid;
     grid-template-columns: auto auto auto;      
-    height: fit-content;
+  margin-top: fit-content;
     width: fit-content;
-    border-radius: 5px;
-    margin-top: 10px;
     gap: 10px;
 }
 
-
 #filterDiv{
-    width: 200px;
-    margin: 10px;
+    width: 100%;
+
     height: fit-content;
     padding: 10px;
     border: 1px solid black;
@@ -60,19 +54,7 @@
     height: 10px;
 }
 
-#productWrapper{
-    width: 90%;
-    height: 80%;
-    border: 3px solid black;
 
-
-}
-.productImage , .productInfo{
-    width: 50%;
-    height: 100%;
-    display: flex;
-    border: 3px solid black;
-}
 
 
 
@@ -87,11 +69,7 @@
         grid-template-columns: auto;
 
     }
-    #contentWrapper{
-        flex-direction: column;
-       justify-content:space-between;
-       align-items: center;
-    }
+   
     #filterDiv{
    
     width: 90%;

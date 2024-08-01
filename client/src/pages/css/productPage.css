@@ -1,0 +1,17 @@
+
+
+.productWrapper{
+ height: fit-content;
+ justify-content: space-between;
+}
+.productImage , .productInfo{
+    height: 50px;
+
+}
+#productImage, .productInfo {
+   max-width: 300px;
+
+}
+#productImage > img{
+width: 100%;
+}

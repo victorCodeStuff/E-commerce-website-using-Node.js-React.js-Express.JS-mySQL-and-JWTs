@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const verifyToken = require("./auth/verifyToken.js")
 const queryProduct = require("./common/products.js")
 const queryProductDetails = require("./common/productDetails.js")
+const querySearches = require("./common/searchSystem.js")
 
 app = express();
 app.use(express.json());
@@ -22,6 +23,8 @@ userLogin(app);
 verifyToken(app);
 queryProduct(app);
 queryProductDetails(app);
+querySearches(app)
+
 app.get("/",(req,res)=>{
   
   res.send("hello")
