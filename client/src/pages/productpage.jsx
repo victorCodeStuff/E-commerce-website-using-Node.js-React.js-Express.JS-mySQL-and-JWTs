@@ -1,11 +1,12 @@
 import axios, { all } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import redirectClick from "../utils/redirectingAfterClick";
 
 const Product = () => {
   const [products, setProducts] = useState([true]);
   const [selectedIds, setSelectedIds] = useState([]);
-  const navigate = useNavigate();
+
 
   var currentCategories = [
     {
@@ -44,11 +45,15 @@ const Product = () => {
           params: { filteringSystem },
         });
         setProducts(response.data);
+      
       } catch (error) {
         console.error("error fetching data:", error);
-      }};
-fetchData();
+      }
+    };
+    fetchData();
   }, []);
+
+  
 
   const handleCheckBoxesChanges = (event) => {
     const checkedId = event.target.value;
@@ -59,60 +64,51 @@ fetchData();
     }
   };
 
-  const handleProductId = (event) => {
-   
-    const currentProduct = event.currentTarget
-    const currentProductWithouFirstClass = Array.from(currentProduct.classList).slice(1)
-    const currentProductJoin = currentProductWithouFirstClass.join(' ')
-  
-    navigate(`/product/${currentProduct.id}/${currentProductJoin}`)
-   // console.log()    
-  };
+
   return (
     <>
-    <div className="productWrapper">
-      <div id="filterDiv">
-        {currentCategories.map((categories) => (
-          <label key={categories.name}>
-            <input
-              type="checkbox"
-              value={categories.name}
-              id={categories.name}
-              checked={selectedIds.includes(categories.name)}
-              onChange={(event) => {
-                handleCheckBoxesChanges(event);
-              }}
-            />
-            {categories.name}
-          </label>
-        ))}
-      </div>
+      <div className="productWrapper">
+        <div id="filterDiv">
+          {currentCategories.map((categories) => (
+            <label key={categories.name}>
+              <input
+                type="checkbox"
+                value={categories.name}
+                id={categories.name}
+                checked={selectedIds.includes(categories.name)}
+                onChange={(event) => {
+                  handleCheckBoxesChanges(event);
+                }}
+              />
+              {categories.name}
+            </label>
+          ))}
+        </div>
 
-      <div className="productsPage">
-        {products.map((item) => (
-          <div
-            id={item.id}
-            name={`${item.productsName}`}
-            onClick={handleProductId}
-            className={`productsContainer ${item.productsName}`} 
-            key={item.id}
-          >
-            <div id="productImg">
-              <img
-                src={"/productsImages/product" + item.id + "/product_1.jpg"}
-              ></img>
+        <div className="productsPage">
+          {products.map((item) => (
+            <div
+              id={item.id}
+              name={`${item.productsName}`}
+              onClick={redirectClick}
+              className={`productsContainer ${item.productsName}`}
+              key={item.id}
+            >
+              <div id="productImg">
+                <img
+                  src={"/productsImages/product" + item.id + "/product_1.jpg"}
+                ></img>
+              </div>
+              <div id="productDesc">
+                <h3 className="productTitle"> {item.productsName}</h3>
+                <p> {item.category}</p>
+                <h3>{item.price}</h3>
+              </div>
             </div>
-            <div id="productDesc">
-              <h3 className="productTitle"> {item.productsName}</h3>
-              <p> {item.category}</p>
-              <h3>{item.price}</h3>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    
-    </div>
-      </>
+    </>
   );
 };
 

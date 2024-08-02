@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import '../pages/css/productPage.css'
+import "../pages/css/productPage.css";
+
 
 function ProductDetails() {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState();
   const { productName } = useParams();
   const { productId } = useParams();
 
@@ -27,32 +28,28 @@ function ProductDetails() {
     };
 
     fetchData();
-  }, [productId]);
+  }, [productName, productId]);
 
-  if (!product){
-
-    return <div>
-      Loading Product Details...
-    </div>
+  if (!product) {
+    return <div>Loading Product Details...</div>;
   }
 
-
- var productInfo = product;
- console.log(productInfo)
- console.log(productInfo[0].id)
- return (
+  const productInfo = product;
+  console.log(productInfo);
+ 
+  return (
     <>
       <div id="productWrapper">
         <div id="productImage">
-             <img src={"/productsImages/product" + (productInfo[0].id) + "/product_1.jpg"} ></img>
+          <img
+            src={
+              "/productsImages/product" + productInfo[0].id + "/product_1.jpg"
+            }
+          ></img>
         </div>
-       
-        <div id="productName">
-          {productInfo[0].productsName}
-        </div>
-        <div id="productInfo">
 
-        </div>
+        <div id="productName">{productInfo[0].productsName}</div>
+        <div id="productInfo"></div>
       </div>
     </>
   );
