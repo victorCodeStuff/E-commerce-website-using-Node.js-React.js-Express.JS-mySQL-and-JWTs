@@ -30,9 +30,8 @@ async function getResponse() {
 function App() {
   const navigate = useNavigate();
   let location = useLocation();
-  
+
   useEffect(() => {
- 
     let currentToken = Cookie.get("token");
     console.log("Route changed to:", location.pathname);
     if (
@@ -41,13 +40,12 @@ function App() {
       location.pathname !== "/createuser"
     ) {
       try {
-        getResponse()
-   
+        getResponse();
+
         var userStatus = currentResponse;
         console.log("userStatus", userStatus.data);
         if (userStatus.data) {
           console.log(userStatus.data);
-        
         } else if (!currentToken) {
           console.log("sdfsdfsdf");
           userStatus = false;
@@ -57,8 +55,13 @@ function App() {
         console.error("Error:", error);
       }
     }
-  }, [location])
+  }, [location]);
 
+  function searchForProduct() {
+    var inputValue = document.getElementById("navSearchInput").value;
+    console.log(inputValue)
+    navigate("/search/"+ inputValue)
+  }
   return (
     <>
       <nav>
@@ -76,40 +79,38 @@ function App() {
           <p>E-ECOMMERCE</p>
         </div>
         <div id="searchWrapper">
-        <div id="navSearchInput">
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-          <input placeholder="search for something" type="text"></input>
-        </div>
+          <div id="navSearchInputWrapper">
+            <button  onClick={searchForProduct}>
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+            <input id="navSearchInput" placeholder="search for something" type="text"></input>
+          </div>
         </div>
         <ul id="userIcons">
-          <li id="userIconCart">
-            <FontAwesomeIcon icon={faCartShopping} />
-            
-          </li>
+       
           <li id="userIconUser">
             <FontAwesomeIcon icon={faUser} />
-            <div>
-            asdasda
-            adasdasd
-            </div>
+            <div>asdasda adasdasd</div>
           </li>
         </ul>
       </nav>
       <div id="contentWrapper">
-
-      <Routes>
-        <Route
-          path="/"
-          element={currentResponse ? <Home /> : <Login />}
-        ></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/createuser" element={<Create />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/search/:searchKeyWord" element={<Search />}></Route>
-        <Route path="/aboutme" element={<AboutMe />}></Route>
-        <Route path="/product" element={<Product/>}></Route>
-        <Route path="/product/:productId/:productName" element={<ProductDetails/>}></Route>
-      </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={currentResponse ? <Home /> : <Login />}
+          ></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/createuser" element={<Create />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/search/:searchKeyWord" element={<Search />}></Route>
+          <Route path="/aboutme" element={<AboutMe />}></Route>
+          <Route path="/product" element={<Product />}></Route>
+          <Route
+            path="/product/:productId/:productName"
+            element={<ProductDetails />}
+          ></Route>
+        </Routes>
       </div>
     </>
   );

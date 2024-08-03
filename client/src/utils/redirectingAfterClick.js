@@ -3,11 +3,12 @@ export default function redirectClick(event) {
   to his own page
   */
   const currentProduct = event.currentTarget;
+  console.log(currentProduct.id)
   const currentProductWithouFirstClass = Array.from(
     currentProduct.classList
   ).slice(1);
   const currentProductJoin = currentProductWithouFirstClass.join(" ");
   window.location.replace(
-    `${window.location.pathname}/${currentProduct.id}/${currentProductJoin}`
+    `/product/${currentProduct.id}/${currentProductJoin}`
   );
 }

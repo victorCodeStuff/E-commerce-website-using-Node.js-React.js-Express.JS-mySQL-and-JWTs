@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const db = require("../config/Database");
 const mysql = require("mysql");
 const generateAccessToken = require("../common/generateAcessToken");
-const cookie = require("cookie-parser");
+
 
 async function userLogin() {
   app.post("/login", async (req, res, err) => 

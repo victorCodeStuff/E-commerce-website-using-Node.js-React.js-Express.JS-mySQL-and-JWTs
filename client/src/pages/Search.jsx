@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import redirectClick from "../utils/redirectingAfterClick";
 
 const Search = () => {
   const [ currentProducts, setCurrentProducts ] = useState([]);
@@ -36,7 +37,7 @@ console.log('currentProducts:', SearchedProduct)
             <div
               id={item.id}
               name={`${item.productsName}`}
-
+              onClick={redirectClick}
               className={`productsContainer ${item.productsName}`}
               key={item.id}
             >

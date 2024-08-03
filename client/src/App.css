@@ -59,7 +59,7 @@ form{
   display: flex;
   flex-direction: column;
 }
-  #navSearchInput{
+  #navSearchInputWrapper{
     width: 200px;
     height: 30px;
     justify-content: space-evenly;
@@ -69,7 +69,7 @@ form{
     align-items: center;
     border-radius:30px;
   }
-  #navSearchInput > input{
+  #navSearchInputWrapper > input{
     width: 70%;
     height: 20px;
     border: 2px solid black;
@@ -83,17 +83,11 @@ form{
     font-weight: 500;
     font-family: 'oswald';
   }
-#userIcons{
-  display: flex;
-  justify-content: space-between;
-  width: 100px;
-  padding: 0px;
-}
   #userIcons > li > svg{
  color: black;
  }
 #userIcons > li > svg:hover{
-  color: rgb(79, 79, 79);
+  color: rgb(27, 103, 19);
  
  }
 #userIconUser > div{
