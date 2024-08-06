@@ -53,7 +53,7 @@ async function userCreation (){
                   const userId = result.insertId
                   console.log("his id is:", userId);
                   res.json(
-                   userId
+                  userId
                   );
                 });
               }

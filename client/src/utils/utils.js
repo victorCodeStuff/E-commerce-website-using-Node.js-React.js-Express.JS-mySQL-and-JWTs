@@ -1,21 +1,18 @@
 import axios from "axios";
 import Cookie from "js-cookie";
 import {  useNavigate } from "react-router-dom";
-// getting the Cookie value
+
 
 export function getToken() {
   let newToken = Cookie.get("token");
   console.log(newToken);
 }
 
-const Redirecting = () => {
-  const navigate = useNavigate();
-  function redirect  (){
-    navigate("/login");
-    
-  }
-  console.log("dd")
-};
+export function logoutButton(){
+  console.log("sdfdfsdf")
+  Cookie.remove("token")
+}
+
 
 export async function verifyToken() {
 
@@ -35,4 +32,18 @@ export async function verifyToken() {
       console.error("Error:", error);
     }
   }
+}
+export default function redirectClick(event) {
+  /* after you click on a displayed product you will redirect
+  to his own page
+  */
+  const currentProduct = event.currentTarget;
+  console.log(currentProduct.id)
+  const currentProductWithouFirstClass = Array.from(
+    currentProduct.classList
+  ).slice(1);
+  const currentProductJoin = currentProductWithouFirstClass.join(" ");
+  window.location.replace(
+    `/product/${currentProduct.id}/${currentProductJoin}`
+  );
 }

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../pages/css/productPage.css";
 
-
 function ProductDetails() {
   const [product, setProduct] = useState();
   const { productName } = useParams();
@@ -33,10 +32,7 @@ function ProductDetails() {
   if (!product) {
     return <div>Loading Product Details...</div>;
   }
-
   const productInfo = product;
-  console.log(productInfo);
- 
   return (
     <>
       <div id="productWrapper">

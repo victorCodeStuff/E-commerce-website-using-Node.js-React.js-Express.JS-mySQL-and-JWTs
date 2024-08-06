@@ -11,7 +11,7 @@ async function verifyToken() {
       res.send(login=true)
     } catch (err) {
       console.error("Invalid JWT:", err.message);
-      res.send(login=false)
+      res.send(login = false)
    
     }
   });

@@ -16,7 +16,6 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 let currentResponse = true;
@@ -32,8 +31,6 @@ function App() {
   let location = useLocation();
 
   useEffect(() => {
-    let currentToken = Cookie.get("token");
-    console.log("Route changed to:", location.pathname);
     if (
       location.pathname !== "/login" &&
       location.pathname !== "/dashboard" &&
@@ -41,13 +38,8 @@ function App() {
     ) {
       try {
         getResponse();
-
         var userStatus = currentResponse;
-        console.log("userStatus", userStatus.data);
-        if (userStatus.data) {
-          console.log(userStatus.data);
-        } else if (!currentToken) {
-          console.log("sdfsdfsdf");
+        if (userStatus.data === false || undefined) {
           userStatus = false;
           navigate("/login");
         }
@@ -59,19 +51,20 @@ function App() {
 
   function searchForProduct() {
     var inputValue = document.getElementById("navSearchInput").value;
-    console.log(inputValue)
-    navigate("/search/"+ inputValue)
+    if (inputValue.length >= 1) {
+      navigate("/search/" + inputValue);
+    }
   }
   return (
     <>
       <nav>
         <ul id="principalRoutes">
           <li>
-            <Link to="./">home</Link>
+            <Link to="./">Home</Link>
           </li>
 
           <li>
-            <Link to="./product">about me</Link>
+            <Link to="./product">Products</Link>
           </li>
         </ul>
         <div id="shopName">
@@ -80,14 +73,17 @@ function App() {
         </div>
         <div id="searchWrapper">
           <div id="navSearchInputWrapper">
-            <button  onClick={searchForProduct}>
+            <button onClick={searchForProduct}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
-            <input id="navSearchInput" placeholder="search for something" type="text"></input>
+            <input
+              id="navSearchInput"
+              placeholder="search for something"
+              type="text"
+            ></input>
           </div>
         </div>
         <ul id="userIcons">
-       
           <li id="userIconUser">
             <FontAwesomeIcon icon={faUser} />
             <div>asdasda adasdasd</div>

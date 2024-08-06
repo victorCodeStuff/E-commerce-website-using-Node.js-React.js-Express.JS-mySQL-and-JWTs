@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import redirectClick from "../utils/redirectingAfterClick";
-
+import redirectClick from "../utils/utils";
 const Search = () => {
-  const [ currentProducts, setCurrentProducts ] = useState([]);
+  const [currentProducts, setCurrentProducts] = useState([]);
   const { searchKeyWord } = useParams();
 
   useEffect(() => {
@@ -21,18 +20,13 @@ const Search = () => {
       }
     };
 
-    
     fetchData();
   }, [searchKeyWord]);
-
-
-const SearchedProduct = currentProducts;
-console.log('currentProducts:', SearchedProduct)
-
-
-  return (<>
-   <>
-   <div className="productsPage">
+  const SearchedProduct = currentProducts;
+  return (
+    <>
+      <>
+        <div className="productsPage">
           {SearchedProduct.map((item) => (
             <div
               id={item.id}
@@ -54,10 +48,9 @@ console.log('currentProducts:', SearchedProduct)
             </div>
           ))}
         </div>
-   </>
-   
- 
-  </> )
+      </>
+    </>
+  );
 };
 
 export default Search;

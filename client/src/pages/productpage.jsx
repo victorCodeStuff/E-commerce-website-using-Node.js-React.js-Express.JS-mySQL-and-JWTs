@@ -1,13 +1,12 @@
 import axios, { all } from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import redirectClick from "../utils/redirectingAfterClick";
 
+import redirectClick from "../utils/utils";
 const Product = () => {
   const [products, setProducts] = useState([true]);
   const [selectedIds, setSelectedIds] = useState([]);
 
-
+  // list of input boxes
   var currentCategories = [
     {
       name: "All",
@@ -45,7 +44,6 @@ const Product = () => {
           params: { filteringSystem },
         });
         setProducts(response.data);
-      
       } catch (error) {
         console.error("error fetching data:", error);
       }
@@ -53,17 +51,18 @@ const Product = () => {
     fetchData();
   }, []);
 
-  
-
   const handleCheckBoxesChanges = (event) => {
-    const checkedId = event.target.value;
-    if (event.target.checked) {
-      setSelectedIds([...selectedIds, checkedId]);
-    } else {
-      setSelectedIds(selectedIds.filter((id) => id !== checkedId));
-    }
-  };
+    setSelectedIds(event.target.checked);
 
+    if (event.target.checked) {
+      console.log(event.target.value);
+      event.target.value = event.target.name;
+    } else {
+      event.target.value = "0";
+      console.log(event.target.value);
+    }
+    var values = selectedIds[0];
+  };
 
   return (
     <>
@@ -75,7 +74,6 @@ const Product = () => {
                 type="checkbox"
                 value={categories.name}
                 id={categories.name}
-                checked={selectedIds.includes(categories.name)}
                 onChange={(event) => {
                   handleCheckBoxesChanges(event);
                 }}

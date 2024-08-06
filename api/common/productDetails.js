@@ -6,7 +6,7 @@ async function  queryProductsDetails() {
 
     const productName = req.query.productName;
     const productId = req.query.productId;
-// if you want to test this through POSTMAN change "body" to body
+// if you want to test this through POSTMAN change "query" to body
  
     const sql = "SELECT * FROM userDB.products WHERE productsName = ? and Id = ?";
     try {

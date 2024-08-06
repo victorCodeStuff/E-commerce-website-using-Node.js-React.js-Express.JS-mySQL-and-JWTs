@@ -36,7 +36,6 @@ async function userLogin() {
 
             if (await bcrypt.compare(password, hashedPassword)) {
               const token = generateAccessToken({ username: req.body.name });
-              console.log("sucessfully logged\nyour token is:" + token);
               
               userStatus = true
               res.json({
