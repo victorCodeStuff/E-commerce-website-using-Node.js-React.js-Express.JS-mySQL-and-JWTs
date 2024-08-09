@@ -1,5 +1,6 @@
 import "./App.css";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
+// Import individual pages as components
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -8,19 +9,24 @@ import Product from "./pages/productpage";
 import Create from "./pages/Create";
 import AboutMe from "./pages/AboutMe";
 import Search from "./pages/Search";
+// Import utils and libraries
 import { searchForProduct } from "./utils/utils";
 import axios from "axios";
 import Cookie from "js-cookie";
 import React from "react";
 import { useEffect } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
+
+// Global state variable to track user authentication status
 let currentResponse = true;
+
+// Function to verify user token with the server
 async function getResponse() {
   const token = Cookie.get("token");
+   // Update currentResponse based on server response for authentication
   currentResponse = await axios.post("http://localhost:3000/verifyToken", {
     token,
   });
@@ -28,24 +34,26 @@ async function getResponse() {
 
 function App() {
   let location = useLocation();
-console.log(location.pathname)
-useEffect(() => {
-  if (
-    location.pathname !== "/login" &
-    location.pathname !== "/createuser"
-  ) {
-    try {
-      getResponse();
-      var userStatus = currentResponse;
-      if (userStatus.data === false || undefined) {
-        userStatus = false;
-        navigate("/login");
+  
+  useEffect(() => {
+    // Check user authentication on route change
+    if (
+      (location.pathname != "/login") &
+      (location.pathname != "/createuser")
+    ) {
+      try {
+        getResponse();// Fetch user authentication status
+        var userStatus = currentResponse; // Extract user data from response
+ 
+        if (!userStatus.data) {
+          // Redirect to login if not authenticated
+          window.location.replace("/login");
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
     }
-  }
-}, [location]);
+  }, [location]);
 
   return (
     <>
@@ -78,7 +86,6 @@ useEffect(() => {
         <ul id="userIcons">
           <li id="userIconUser">
             <FontAwesomeIcon icon={faUser} />
-          
           </li>
         </ul>
       </nav>
