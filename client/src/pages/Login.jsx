@@ -17,11 +17,12 @@ export default function Login() {
 
     axios.post("http://localhost:3000/login", logRequest).then((response) => {
       let token = response.data.token;
+      
       document.cookie = `token=${token}`;
       //if the user was authenticated he will be redirected
-      if(token){
-        navigate("/dashboard");
-
+      if(token !== undefined){
+      navigate("/dashboard");
+   
       }
     });
   }

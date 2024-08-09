@@ -3,6 +3,7 @@ import Cookie from "js-cookie";
 import {  useNavigate } from "react-router-dom";
 
 
+
 export function getToken() {
   let newToken = Cookie.get("token");
   console.log(newToken);
@@ -11,6 +12,16 @@ export function getToken() {
 export function logoutButton(){
   console.log("sdfdfsdf")
   Cookie.remove("token")
+  window.location.replace(
+    '/login'
+  );
+}
+export function searchForProduct() {
+  
+  var inputValue = document.getElementById("navSearchInput").value;
+  if (inputValue.length >= 1) {
+    window.location.replace("/search/" + inputValue);
+  }
 }
 
 

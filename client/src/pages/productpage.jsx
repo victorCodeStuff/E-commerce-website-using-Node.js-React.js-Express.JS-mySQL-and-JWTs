@@ -4,14 +4,9 @@ import { useEffect, useState } from "react";
 import redirectClick from "../utils/utils";
 const Product = () => {
   const [products, setProducts] = useState([true]);
-  const [selectedIds, setSelectedIds] = useState([]);
 
-  // list of input boxes
+  // list of input boxes to be mapped
   var currentCategories = [
-    {
-      name: "All",
-      value: "All",
-    },
     {
       name: "Literature & Fiction",
     },
@@ -30,57 +25,74 @@ const Product = () => {
   ];
 
   var filteringSystem = [
-    "Manga & Comics",
-    "Programming",
-    "Poetry",
     "Literature & Fiction",
+    "Programming",
+    "Manga & Comics",
     "Fantasy",
+    "Poetry",
   ];
-
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/products", {
+        params: { filteringSystem },
+      });
+      setProducts(response.data);
+    } catch (error) {
+      console.error("error fetching data:", error);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/products", {
-          params: { filteringSystem },
-        });
-        setProducts(response.data);
-      } catch (error) {
-        console.error("error fetching data:", error);
-      }
-    };
     fetchData();
   }, []);
 
-  const handleCheckBoxesChanges = (event) => {
-    setSelectedIds(event.target.checked);
-
-    if (event.target.checked) {
-      console.log(event.target.value);
-      event.target.value = event.target.name;
-    } else {
-      event.target.value = "0";
-      console.log(event.target.value);
+  const handleFIltering = (event) => {
+    /*
+      Filtering System Overview:
+      - Uses a `filteringSystem` array to store category filters.
+      - Array contains four elements representing server-side categories.
+      - Server-side query utilizes the `filteringSystem` array to filter products.
+      - How Checkboxes states affects array values:
+      - Unchecked: Category value is set to 'undefined', making the query of this category impossible.
+      - Checked: Category is included in the query.
+*/
+    console.log(event.target.id);
+    var checkedBoxes = Array.from(
+      document.querySelectorAll("input[type=checkbox]:checked")
+    );
+    var checkedValues = checkedBoxes.map((box) => box.value);
+    for (let i = 0; i < filteringSystem.length; i++) {
+      if (filteringSystem[i] !== checkedValues[i]) {
+        if (!checkedValues.includes("All")) {
+          filteringSystem[i] = checkedValues[i];
+        } else {
+          for (let i = 0; i < filteringSystem.length; i++) {
+            filteringSystem[i] = currentCategories[i].name;
+          }
+        }
+      }
     }
-    var values = selectedIds[0];
+    fetchData();
   };
 
   return (
     <>
       <div className="productWrapper">
         <div id="filterDiv">
+          <label>
+            <input type="checkbox" value="All" />
+            All
+          </label>
           {currentCategories.map((categories) => (
             <label key={categories.name}>
               <input
                 type="checkbox"
                 value={categories.name}
                 id={categories.name}
-                onChange={(event) => {
-                  handleCheckBoxesChanges(event);
-                }}
               />
               {categories.name}
             </label>
           ))}
+          <button onClick={handleFIltering}></button>
         </div>
 
         <div className="productsPage">

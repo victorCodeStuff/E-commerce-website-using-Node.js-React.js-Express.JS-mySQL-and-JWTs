@@ -27,6 +27,7 @@ const Search = () => {
     <>
       <>
         <div className="productsPage">
+          
           {SearchedProduct.map((item) => (
             <div
               id={item.id}

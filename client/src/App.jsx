@@ -8,12 +8,12 @@ import Product from "./pages/productpage";
 import Create from "./pages/Create";
 import AboutMe from "./pages/AboutMe";
 import Search from "./pages/Search";
-
+import { searchForProduct } from "./utils/utils";
 import axios from "axios";
 import Cookie from "js-cookie";
 import React from "react";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -27,34 +27,26 @@ async function getResponse() {
 }
 
 function App() {
-  const navigate = useNavigate();
   let location = useLocation();
-
-  useEffect(() => {
-    if (
-      location.pathname !== "/login" &&
-      location.pathname !== "/dashboard" &&
-      location.pathname !== "/createuser"
-    ) {
-      try {
-        getResponse();
-        var userStatus = currentResponse;
-        if (userStatus.data === false || undefined) {
-          userStatus = false;
-          navigate("/login");
-        }
-      } catch (error) {
-        console.error("Error:", error);
+console.log(location.pathname)
+useEffect(() => {
+  if (
+    location.pathname !== "/login" &
+    location.pathname !== "/createuser"
+  ) {
+    try {
+      getResponse();
+      var userStatus = currentResponse;
+      if (userStatus.data === false || undefined) {
+        userStatus = false;
+        navigate("/login");
       }
-    }
-  }, [location]);
-
-  function searchForProduct() {
-    var inputValue = document.getElementById("navSearchInput").value;
-    if (inputValue.length >= 1) {
-      navigate("/search/" + inputValue);
+    } catch (error) {
+      console.error("Error:", error);
     }
   }
+}, [location]);
+
   return (
     <>
       <nav>
@@ -86,7 +78,7 @@ function App() {
         <ul id="userIcons">
           <li id="userIconUser">
             <FontAwesomeIcon icon={faUser} />
-            <div>asdasda adasdasd</div>
+          
           </li>
         </ul>
       </nav>

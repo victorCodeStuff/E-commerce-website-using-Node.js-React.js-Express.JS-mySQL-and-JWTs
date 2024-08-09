@@ -3,7 +3,7 @@ const db = require("../config/Database");
 async function queryProducts() {
   app.get("/products", async (req, res) => {
     const categoriesApplied = req.query.filteringSystem;
-    const placeholders = Array(categoriesApplied.length).fill('?').join(', ');
+    const placeholders = Array(categoriesApplied.length).fill('?').join(',');
     const sql = `SELECT * FROM userDB.products WHERE category IN (${placeholders})`;
    
 

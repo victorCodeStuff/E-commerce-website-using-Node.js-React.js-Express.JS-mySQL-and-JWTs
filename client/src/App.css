@@ -83,21 +83,17 @@ form{
     font-weight: 500;
     font-family: 'oswald';
   }
+  #userIcons {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   #userIcons > li > svg{
  color: black;
- }
-#userIcons > li > svg:hover{
-  color: rgb(27, 103, 19);
- 
- }
-#userIconUser > div{
-  display: none;
-}
 
-#userIconUser:hover{
-  display: block;
-  z-index: 1;  
-}
+ }
+
 
   #dashboard{
   height:70vh;
@@ -135,10 +131,9 @@ form{
 }
 #contentWrapper{
   display: flex;
-width: 100%;
+  width: 100%;
 margin-top: 50px;
 align-items: center;
-
 justify-content: center;
 
 }
