@@ -41,11 +41,39 @@ const Product = () => {
       console.error("error fetching data:", error);
     }
   };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  const handleFIltering = (event) => {
+ 
+  // Get all checked checkboxes (assuming class name is "checkbox")
+const checkedBoxes = Array.from(
+  document.querySelectorAll("input.checkbox:checked")
+);
+
+// Get reference to "All" checkbox
+const allCheckBox = document.getElementById("All");
+
+const allCheck = (event) => {
+  const categoryCheckBoxes = document.querySelectorAll(".checkbox");
+  // If "All" is checked, uncheck all categories
+    console.log(event.target.id)
+  if (event.target.id === "All") {
+    categoryCheckBoxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+  } else if (event.target.id !== "All"){
+    // If a category is checked, uncheck "All"
+   
+    allCheckBox.checked = false;
+  
+
+  }
+};
+
+
+  const handleFIltering = () => {
     /*
       Filtering System Overview:
       - Uses a `filteringSystem` array to store category filters.
@@ -55,23 +83,24 @@ const Product = () => {
       - Unchecked: Category value is set to 'undefined', making the query of this category impossible.
       - Checked: Category is included in the query.
 */
-    console.log(event.target.id);
+
     var checkedBoxes = Array.from(
       document.querySelectorAll("input[type=checkbox]:checked")
     );
     var checkedValues = checkedBoxes.map((box) => box.value);
     for (let i = 0; i < filteringSystem.length; i++) {
-      if (filteringSystem[i] !== checkedValues[i]) {
-        if (!checkedValues.includes("All")) {
-          filteringSystem[i] = checkedValues[i];
-        } else {
-          for (let i = 0; i < filteringSystem.length; i++) {
-            filteringSystem[i] = currentCategories[i].name;
-          }
-        }
+      if (
+        (filteringSystem[i] !== checkedValues[i]) &
+        !checkedValues.includes("All")
+      ) {
+        filteringSystem[i] = checkedValues[i];
+        console.log(checkedValues);
+      } else if (checkedValues.includes("All") & (checkedValues.length <= 1)) {
+        filteringSystem[i] = currentCategories[i].name;
+        console.log(checkedValues);
       }
+      fetchData();
     }
-    fetchData();
   };
 
   return (
@@ -79,7 +108,12 @@ const Product = () => {
       <div className="productWrapper">
         <div id="filterDiv">
           <label>
-            <input type="checkbox" value="All" />
+            <input 
+            type="checkbox" 
+            id="All" 
+            value="All" 
+            onChange={allCheck}
+            />
             All
           </label>
           {currentCategories.map((categories) => (
@@ -87,7 +121,9 @@ const Product = () => {
               <input
                 type="checkbox"
                 value={categories.name}
-                id={categories.name}
+                className="checkbox"
+                onChange={allCheck}
+
               />
               {categories.name}
             </label>
