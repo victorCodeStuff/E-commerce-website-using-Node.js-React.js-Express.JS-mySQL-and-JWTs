@@ -46,32 +46,28 @@ const Product = () => {
     fetchData();
   }, []);
 
- 
   // Get all checked checkboxes (assuming class name is "checkbox")
-const checkedBoxes = Array.from(
-  document.querySelectorAll("input.checkbox:checked")
-);
+  const checkedBoxes = Array.from(
+    document.querySelectorAll("input.checkbox:checked")
+  );
 
-// Get reference to "All" checkbox
-const allCheckBox = document.getElementById("All");
+  // Get reference to "All" checkbox
+  const allCheckBox = document.getElementById("All");
 
-const allCheck = (event) => {
-  const categoryCheckBoxes = document.querySelectorAll(".checkbox");
-  // If "All" is checked, uncheck all categories
-    console.log(event.target.id)
-  if (event.target.id === "All") {
-    categoryCheckBoxes.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
-  } else if (event.target.id !== "All"){
-    // If a category is checked, uncheck "All"
-   
-    allCheckBox.checked = false;
-  
+  const allCheck = (event) => {
+    const categoryCheckBoxes = document.querySelectorAll(".checkbox");
+    // If "All" is checked, uncheck all categories
+    console.log(event.target.id);
+    if (event.target.id === "All") {
+      categoryCheckBoxes.forEach((checkbox) => {
+        checkbox.checked = false;
+      });
+    } else if (event.target.id !== "All") {
+      // If a category is checked, uncheck "All"
 
-  }
-};
-
+      allCheckBox.checked = false;
+    }
+  };
 
   const handleFIltering = () => {
     /*
@@ -94,10 +90,9 @@ const allCheck = (event) => {
         !checkedValues.includes("All")
       ) {
         filteringSystem[i] = checkedValues[i];
-        console.log(checkedValues);
       } else if (checkedValues.includes("All") & (checkedValues.length <= 1)) {
         filteringSystem[i] = currentCategories[i].name;
-        console.log(checkedValues);
+        console.log(filteringSystem)
       }
       fetchData();
     }
@@ -108,12 +103,7 @@ const allCheck = (event) => {
       <div className="productWrapper">
         <div id="filterDiv">
           <label>
-            <input 
-            type="checkbox" 
-            id="All" 
-            value="All" 
-            onChange={allCheck}
-            />
+            <input type="checkbox" id="All" value="All" onChange={allCheck} />
             All
           </label>
           {currentCategories.map((categories) => (
@@ -123,7 +113,6 @@ const allCheck = (event) => {
                 value={categories.name}
                 className="checkbox"
                 onChange={allCheck}
-
               />
               {categories.name}
             </label>
@@ -142,11 +131,11 @@ const allCheck = (event) => {
             >
               <div id="productImg">
                 <img
-                  src={"/productsImages/product" + item.id + "/product_1.jpg"}
+                  src={"/productsImages/product" + item.id + "/product_" + item.id + ".jpg"}
                 ></img>
               </div>
               <div id="productDesc">
-                <h3 className="productTitle"> {item.productsName}</h3>
+                <h3 className="productTitle">{item.productsName}</h3>
                 <p> {item.category}</p>
                 <h3>{item.price}</h3>
               </div>

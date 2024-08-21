@@ -1,32 +1,25 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-import {  useNavigate } from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom";
 
 export function getToken() {
   let newToken = Cookie.get("token");
   console.log(newToken);
 }
 
-export function logoutButton(){
-  console.log("sdfdfsdf")
-  Cookie.remove("token")
-  window.location.replace(
-    '/login'
-  );
+export function logoutButton() {
+  console.log("sdfdfsdf");
+  Cookie.remove("token");
+  window.location.replace("/login");
 }
 export function searchForProduct() {
-  
   var inputValue = document.getElementById("navSearchInput").value;
   if (inputValue.length >= 1) {
     window.location.replace("/search/" + inputValue);
   }
 }
 
-
 export async function verifyToken() {
-
   const token = Cookie.get("token");
   if (token) {
     try {
@@ -37,7 +30,7 @@ export async function verifyToken() {
       console.log("userStatus", userStatus);
       if (userStatus) {
         console.log("User is logged");
-        Redirecting()
+        Redirecting();
       }
     } catch (error) {
       console.error("Error:", error);
@@ -49,12 +42,12 @@ export default function redirectClick(event) {
   to his own page
   */
   const currentProduct = event.currentTarget;
-  console.log(currentProduct.id)
-  const currentProductWithouFirstClass = Array.from(
-    currentProduct.classList
-  ).slice(1);
-  const currentProductJoin = currentProductWithouFirstClass.join(" ");
+  let productName = currentProduct.getAttribute("name");
+  console.log(productName);
+
+
   window.location.replace(
-    `/product/${currentProduct.id}/${currentProductJoin}`
+    `/product/${currentProduct.id}/${productName}`
   );
+   
 }

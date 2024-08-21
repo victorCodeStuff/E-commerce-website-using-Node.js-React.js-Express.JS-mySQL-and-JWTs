@@ -12,7 +12,7 @@ function ProductDetails() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/productsdetails",
+          "http://localhost:3000/productsDetails",
           {
             params: {
               productName: productName,

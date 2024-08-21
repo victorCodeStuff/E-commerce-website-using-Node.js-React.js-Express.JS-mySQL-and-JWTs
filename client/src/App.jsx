@@ -45,12 +45,9 @@ function App() {
         getResponse();// Fetch user authentication status
         var userStatus = currentResponse; // Extract user data from response
         console.log(userStatus)
-        if (userStatus.data == false || undefined) {
+        if (userStatus.data === false || undefined) {
           // Redirect to login if not authenticated
           window.location.replace("/login");
-        }
-        else if (!userStatus.data) {
-          console.log("User is logged", userStatus.data);
         }
       } catch (error) {
         console.error("Error:", error);
