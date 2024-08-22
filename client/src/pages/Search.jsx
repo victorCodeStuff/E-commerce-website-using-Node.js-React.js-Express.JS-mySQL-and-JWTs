@@ -33,12 +33,12 @@ const Search = () => {
               id={item.id}
               name={`${item.productsName}`}
               onClick={redirectClick}
-              className={`productsContainer ${item.productsName}`}
+              className={`productsContainer`}
               key={item.id}
             >
               <div id="productImg">
                 <img
-                  src={"/productsImages/product" + item.id + "/product_1.jpg"}
+                  src={"/productsImages/product" + item.id + "/product_"+item.id +".jpg"}
                 ></img>
               </div>
               <div id="productDesc">

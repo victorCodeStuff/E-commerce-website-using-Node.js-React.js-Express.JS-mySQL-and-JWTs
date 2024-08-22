@@ -1,4 +1,4 @@
-import axios, { all } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 import redirectClick from "../utils/utils";
@@ -47,9 +47,7 @@ const Product = () => {
   }, []);
 
   // Get all checked checkboxes (assuming class name is "checkbox")
-  const checkedBoxes = Array.from(
-    document.querySelectorAll("input.checkbox:checked")
-  );
+ 
 
   // Get reference to "All" checkbox
   const allCheckBox = document.getElementById("All");
@@ -57,16 +55,23 @@ const Product = () => {
   const allCheck = (event) => {
     const categoryCheckBoxes = document.querySelectorAll(".checkbox");
     // If "All" is checked, uncheck all categories
-    console.log(event.target.id);
+    let checkedBoxes = document.querySelectorAll("input[type=checkbox]:checked")
+    console.log(checkedBoxes.length)
     if (event.target.id === "All") {
       categoryCheckBoxes.forEach((checkbox) => {
         checkbox.checked = false;
       });
-    } else if (event.target.id !== "All") {
+      
+    } 
+    else if(checkedBoxes.length === 0){
+      allCheckBox.checked = true;
+    }
+    
+    else if (event.target.id !== "All") {
       // If a category is checked, uncheck "All"
-
       allCheckBox.checked = false;
     }
+
   };
 
   const handleFIltering = () => {
@@ -79,10 +84,10 @@ const Product = () => {
       - Unchecked: Category value is set to 'undefined', making the query of this category impossible.
       - Checked: Category is included in the query.
 */
-
     var checkedBoxes = Array.from(
       document.querySelectorAll("input[type=checkbox]:checked")
     );
+    console.log(checkedBoxes.is)
     var checkedValues = checkedBoxes.map((box) => box.value);
     for (let i = 0; i < filteringSystem.length; i++) {
       if (
@@ -94,8 +99,9 @@ const Product = () => {
         filteringSystem[i] = currentCategories[i].name;
         console.log(filteringSystem)
       }
-      fetchData();
-    }
+    
+      
+    }fetchData();
   };
 
   return (
@@ -126,7 +132,7 @@ const Product = () => {
               id={item.id}
               name={`${item.productsName}`}
               onClick={redirectClick}
-              className={`productsContainer ${item.productsName}`}
+              className={`productsContainer`}
               key={item.id}
             >
               <div id="productImg">

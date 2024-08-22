@@ -39,7 +39,7 @@ function ProductDetails() {
         <div id="productImage">
           <img
             src={
-              "/productsImages/product" + productInfo[0].id + "/product_1.jpg"
+              "/productsImages/product" + productInfo[0].id + "/product_"+productInfo[0].id +".jpg"
             }
           ></img>
         </div>
