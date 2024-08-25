@@ -1,4 +1,5 @@
 import "./App.css";
+import "./pages/css/navBarStyle.css";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 // Import individual pages as components
 import Home from "./pages/Home";
@@ -21,7 +22,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 
 // Global state variable to track user authentication status
-let currentResponse = true;
+let currentResponse = false;
 
 // Function to verify user token with the server
 async function getResponse() {
@@ -34,26 +35,23 @@ async function getResponse() {
 
 function App() {
   let location = useLocation();
-  
-  useEffect(() => {
-    // Check user authentication on route change
-    if (
-      (location.pathname != "/login") &
-      (location.pathname != "/createuser")
-    ) {
-      try {
-        getResponse();// Fetch user authentication status
-        var userStatus = currentResponse; // Extract user data from response
-        console.log(userStatus)
-        if (userStatus.data === false || undefined) {
-          // Redirect to login if not authenticated
-          window.location.replace("/login");
-        }
-      } catch (error) {
-        console.error("Error:", error);
+  getResponse()
+
+useEffect(() => {
+  if (
+    (location.pathname != "/login") &
+    (location.pathname != "/createuser")
+  ) {
+    getResponse().then((response) => {
+      const userStatus = currentResponse.data;
+      if (!userStatus) {
+        window.location.replace("/login");
       }
-    }
-  }, [location]);
+    }).catch(error => {
+      console.error("Error:", error);
+    });
+  }
+}, [location]);
 
   return (
     <>
@@ -67,10 +65,7 @@ function App() {
             <Link to="./product">Products</Link>
           </li>
         </ul>
-        <div id="shopName">
-          <h1>VICTOR</h1>
-          <p>E-ECOMMERCE</p>
-        </div>
+       
         <div id="searchWrapper">
           <div id="navSearchInputWrapper">
             <button onClick={searchForProduct}>
@@ -91,10 +86,7 @@ function App() {
       </nav>
       <div id="contentWrapper">
         <Routes>
-          <Route
-            path="/"
-            element={currentResponse ? <Home /> : <Login />}
-          ></Route>
+          <Route path="/" element={currentResponse !== null ? currentResponse ? <Home /> : <Login /> : null} />
           <Route path="/login" element={<Login />}></Route>
           <Route path="/createuser" element={<Create />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>

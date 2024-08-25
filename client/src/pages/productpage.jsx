@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { all } from "axios";
 import { useEffect, useState } from "react";
 
 import redirectClick from "../utils/utils";
@@ -41,16 +41,20 @@ const Product = () => {
       console.error("error fetching data:", error);
     }
   };
+  // Get reference to "All" checkbox
+  const allCheckBox = document.getElementById("All");
+
 
   useEffect(() => {
-    fetchData();
+    fetchData()
+    
+   
+   
   }, []);
 
   // Get all checked checkboxes (assuming class name is "checkbox")
  
 
-  // Get reference to "All" checkbox
-  const allCheckBox = document.getElementById("All");
 
   const allCheck = (event) => {
     const categoryCheckBoxes = document.querySelectorAll(".checkbox");
@@ -87,7 +91,7 @@ const Product = () => {
     var checkedBoxes = Array.from(
       document.querySelectorAll("input[type=checkbox]:checked")
     );
-    console.log(checkedBoxes.is)
+    
     var checkedValues = checkedBoxes.map((box) => box.value);
     for (let i = 0; i < filteringSystem.length; i++) {
       if (
@@ -109,7 +113,7 @@ const Product = () => {
       <div className="productWrapper">
         <div id="filterDiv">
           <label>
-            <input type="checkbox" id="All" value="All" onChange={allCheck} />
+            <input type="checkbox" checked id="All" value="All" onChange={allCheck} />
             All
           </label>
           {currentCategories.map((categories) => (

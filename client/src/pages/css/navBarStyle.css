@@ -1,0 +1,27 @@
+
+nav{
+    position: relative;
+    gap: 10px;
+    display: flex;
+    top: 10px;
+    border: 3px solid black;
+    padding: 10px;
+    width: 95vw;
+    justify-content: space-between;
+    border-radius: 40px;
+    
+}
+#searchWrapper, #principalRoutes{
+    display: flex;
+    justify-content: space-between;
+}
+#principalRoutes{
+    display: flex;
+
+}
+#navSearchInput {
+   
+}
+ul {
+    list-style: none;
+}
