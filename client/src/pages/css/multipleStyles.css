@@ -1,0 +1,20 @@
+/* apply shadows*/
+nav,#filterDiv,.productsContainer,
+.userForm,.product-img > img,.buyButton,.productDetailsWrapper 
+ {
+    box-shadow: 5px 5px #9a9a9a;
+}
+* {
+    border-radius: 5px;
+}
+
+
+.product-img .product-info{
+    width: 50%;
+}
+.product-img > img,.product-img > p {
+    width: 60%;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+}

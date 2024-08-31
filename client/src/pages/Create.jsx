@@ -1,6 +1,7 @@
-
+import "./css/forms.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Create = () => {
     const navigate = useNavigate()
@@ -27,12 +28,20 @@ axios.post("http://localhost:3000/createuser", userCreationReq).then((response) 
   });
 }
   return (<>
+  <div className="userForm">
   <form onSubmit={handleNewUser}>
     <input htmlFor="userNameCreation" placeholder="NAME" id="userNameCreation"></input>
     <input htmlFor="passwordUserCreation" placeholder="PASSWORD" id="passwordUserCreation"></input>
     <input htmlFor="emailUserCreation" placeholder="EMAIL" id="emailUserCreation"></input>
-    <button type="submit"></button>
+    <button type="submit">
+        CREATE !
+    </button>
   </form>
+  <Link to="/login">
+      Already a user?
+      </Link>
+  </div>
+ 
   </>);
 }
 

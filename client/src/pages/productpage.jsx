@@ -127,7 +127,7 @@ const Product = () => {
               {categories.name}
             </label>
           ))}
-          <button onClick={handleFIltering}></button>
+          <button onClick={handleFIltering}>FILTER</button>
         </div>
 
         <div className="productsPage">
@@ -139,12 +139,12 @@ const Product = () => {
               className={`productsContainer`}
               key={item.id}
             >
-              <div id="productImg">
+              <div className="productImg">
                 <img
                   src={"/productsImages/product" + item.id + "/product_" + item.id + ".jpg"}
                 ></img>
               </div>
-              <div id="productDesc">
+              <div  className="productDesc">
                 <h3 className="productTitle">{item.productsName}</h3>
                 <p> {item.category}</p>
                 <h3>{item.price}</h3>

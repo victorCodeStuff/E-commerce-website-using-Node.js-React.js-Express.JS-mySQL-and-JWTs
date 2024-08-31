@@ -1,5 +1,5 @@
-form {
-  width: 100px;
+p{
+  margin: 0;
 }
 
 #dashboard {
@@ -34,7 +34,8 @@ form {
 #contentWrapper {
   display: flex;
   width: 100%;
-  margin-top: 50px;
-  align-items: center;
   justify-content: center;
+  margin: 20px 0px 20px 0px;
+  flex-direction: column;
+  align-items: center;
 }

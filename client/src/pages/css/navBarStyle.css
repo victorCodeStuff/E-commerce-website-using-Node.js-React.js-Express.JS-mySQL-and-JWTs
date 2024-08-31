@@ -1,27 +1,87 @@
+nav {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  top: 10px;
+  border: 2px solid black;
+  padding: 10px;
+  height: 5vh;
+  align-items: center;
+  min-width: 45vw;
+  max-width: 70vw;
+  justify-content: space-between;
+}
+#searchWrapper,
+#principalRoutes,
+#userIcons {
+  display: flex;
+  margin: 0;
+  gap: 10px;
+  padding: 0;
+  font-size: 25px;
+}
+#principalRoutes {
+  display: flex;
+  justify-content: space-between;
+}
+ul > li > a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+ul > li > a:hover {
+  text-decoration: underline;
+}
 
-nav{
-    position: relative;
-    gap: 10px;
-    display: flex;
-    top: 10px;
-    border: 3px solid black;
-    padding: 10px;
-    width: 95vw;
-    justify-content: space-between;
-    border-radius: 40px;
-    
+#searchWrapper {
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 3px;
 }
-#searchWrapper, #principalRoutes{
-    display: flex;
-    justify-content: space-between;
+#searchWrapper > button,
+#searchWrapper > input {
+  border: 3px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  margin: 0px;
+  display: flex;
+  align-items: center;
 }
-#principalRoutes{
-    display: flex;
 
-}
-#navSearchInput {
-   
-}
 ul {
-    list-style: none;
+  list-style: none;
+  width: fit-content;
 }
+
+.dropbtn {
+  background-color: #000000;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  display: flex;
+  align-items: center;
+  transition: 2s;
+}
+
+.dropbtn > button {
+  flex-direction: row;
+  background-color: black;
+  border: 3px solid rgb(0, 0, 0);
+  font-weight: bolder;
+  font-size: 0px;
+}
+
+.dropbtn:hover{
+    width: 100%;
+}
+
+.dropbtn > button:hover {
+
+ 
+ 
+  color: rgb(255, 255, 255);
+  font-size: 100%;
+  
+}
+
+
