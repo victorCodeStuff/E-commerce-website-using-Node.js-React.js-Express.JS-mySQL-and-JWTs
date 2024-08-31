@@ -141,7 +141,7 @@ const Product = () => {
             >
               <div className="productImg">
                 <img
-                  src={"/productsImages/product" + item.id + "/product_" + item.id + ".jpg"}
+                  src={"/productsImages/product" + item.id + "/product_" + item.id + ".png"}
                 ></img>
               </div>
               <div  className="productDesc">

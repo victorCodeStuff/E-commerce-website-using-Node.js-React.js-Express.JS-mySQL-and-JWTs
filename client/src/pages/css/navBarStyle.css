@@ -5,6 +5,7 @@ nav {
   display: flex;
   top: 10px;
   border: 2px solid black;
+  border-radius: 20px;
   padding: 10px;
   height: 5vh;
   align-items: center;

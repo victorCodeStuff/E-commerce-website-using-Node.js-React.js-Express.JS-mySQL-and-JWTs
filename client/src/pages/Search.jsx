@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./css/productPage.css"
+
 import axios from "axios";
 import redirectClick from "../utils/utils";
 const Search = () => {
@@ -36,12 +38,12 @@ const Search = () => {
               className={`productsContainer`}
               key={item.id}
             >
-              <div id="productImg">
+              <div className="productImg">
                 <img
                   src={"/productsImages/product" + item.id + "/product_"+item.id +".jpg"}
                 ></img>
               </div>
-              <div id="productDesc">
+              <div className="productDesc">
                 <h3 className="productTitle"> {item.productsName}</h3>
                 <p> {item.category}</p>
                 <h3>{item.price}</h3>

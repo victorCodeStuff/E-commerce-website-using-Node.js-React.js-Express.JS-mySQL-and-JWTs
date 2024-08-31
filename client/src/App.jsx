@@ -78,11 +78,8 @@ function App() {
           ></input>
         </div>
         <ul class="dropdown" id="userIcons">
-          <li class="dropbtn" id="userIconUser">
             <FontAwesomeIcon icon={faUser} />
               <button onClick={logoutButton}>LOGOUT</button>
-           
-          </li>
         </ul>
       </nav>
       <div id="contentWrapper">

@@ -1,6 +1,5 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-import { useNavigate } from "react-router-dom";
 
 export function getToken() {
   let newToken = Cookie.get("token");

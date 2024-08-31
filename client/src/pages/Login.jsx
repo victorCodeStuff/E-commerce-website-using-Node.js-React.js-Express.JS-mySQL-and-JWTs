@@ -22,7 +22,7 @@ export default function Login() {
       document.cookie = `token=${token}`;
       //if the user was authenticated he will be redirected
       if(token !== undefined){
-      navigate("/dashboard");
+      navigate("/");
    
       }
     });
