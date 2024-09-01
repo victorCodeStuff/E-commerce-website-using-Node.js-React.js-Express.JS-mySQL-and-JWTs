@@ -3,13 +3,12 @@
   transition: 0.1s;
 }
 html,#root {
-  height: 100vh;
-  width: 100vw;
+  height: fit-content;
+  width: 100%;
   margin: 0;
-  border: 100;
-  align-items: center;
+
  
-  
+ 
 }
 
 
@@ -17,7 +16,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items:center ;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   font-family: 'oswald';
 }

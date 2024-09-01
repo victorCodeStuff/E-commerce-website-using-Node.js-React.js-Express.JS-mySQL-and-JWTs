@@ -2,10 +2,7 @@ body {
 	background-color: #f8fafc;
 }
 
-.slideContainer {
-	padding: 2rem;
 
-}
 
 .slider-wrapper {
 	position: relative;
@@ -58,4 +55,8 @@ body {
 
 .slider-nav a:hover {
 	opacity: 1;
+}
+.productsHomeContainer > div{
+	display: flex;
+	gap: 10px;
 }

@@ -1,5 +1,24 @@
 import "./css/home.css"
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "./css/productPage.css"
+import redirectClick from "../utils/utils";
 function Home() {
+	const [products, setProducts]= useState([true]);
+	const productsToBeShown = [ "1", "3",  "4"]
+	const fetchData = async () => {
+		try {
+		  const response = await axios.get("http://localhost:3000/homeProducts", {
+			params: { productsToBeShown},
+		  });
+		  setProducts(response.data);
+		} catch (error) {
+		  console.error("error fetching data:", error);
+		}
+	  };
+	  useEffect(()=>{
+		fetchData()
+	  })
   return (
     <>
       <section className="slideContainer">
@@ -15,7 +34,31 @@ function Home() {
 			<a href="#slide-3"></a>
 		</div>
 	</div>
-</section>
+	  </section>
+	  <section className="productsHomeContainer">
+		<div>
+			{products.map((item)=>(
+			 <div
+			 id={item.id}
+			 name={`${item.productsName}`}
+			 onClick={redirectClick}
+			 className={`productsContainer`}
+			 key={item.id}
+		   >
+			 <div className="productImg">
+			   <img
+			  src={"/productsImages/product" + item.id + "/product_" + item.id + ".png"}
+			   ></img>
+			 </div>
+			 <div  className="productDesc">
+			   <h3 className="productTitle">{item.productsName}</h3>
+			   <p> {item.category}</p>
+			   <h3>{item.price}</h3>
+			 </div>
+		   </div>
+			))}
+		</div>
+	  </section>
     </>
   );
 }

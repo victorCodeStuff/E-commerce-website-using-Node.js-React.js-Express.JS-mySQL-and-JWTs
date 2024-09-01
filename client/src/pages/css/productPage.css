@@ -30,7 +30,7 @@
   justify-content: center;
 }
 .productsContainer {
-  width: 400px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

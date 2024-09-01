@@ -8,6 +8,7 @@ const queryProduct = require("./common/products.js");
 const queryProductDetails = require("./common/productDetails.js");
 const querySearches = require("./common/searchSystem.js");
 const getUser = require("./common/getCurrentUser.js");
+const queryCustomProducts = require("./common/customHomeProducts.js")
 
 app = express();
 app.use(express.json());
@@ -28,6 +29,7 @@ queryProduct(app);
 queryProductDetails(app);
 querySearches(app);
 getUser(app);
+queryCustomProducts(app);
 
 app.get("/", (req, res) => {
   res.send("hello");

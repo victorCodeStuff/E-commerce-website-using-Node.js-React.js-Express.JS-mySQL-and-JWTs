@@ -43,7 +43,7 @@ function ProductDetails() {
   return (
     <>
       <div className="productDetailsWrapper">
-        {" "}
+    
         {/* Class name fix */}
           <div className="product-img">
             <img
@@ -52,7 +52,7 @@ function ProductDetails() {
                 productInfo[0].id +
                 "/product_" +
                 productInfo[0].id +
-                ".jpg"
+                ".png"
               }
             ></img>
             <p style={{ height: isSeeMore ? "fit-content" : "100px" }}>
