@@ -5,9 +5,8 @@ import "../pages/css/productPage.css";
 import "../pages/css/singleProduct.css";
 
 function ProductDetails() {
-  const [product, setProduct] = useState();
-  const { productName } = useParams();
-  const { productId } = useParams();
+  const [product, setProduct] = useState(); // State to store the product data.
+  const { productName,productId } = useParams(); // Extracts productName and productId from the URL parameters.
   const [isSeeMore, setSeeMoreClicked] = useState();
 
   useEffect(() => {
@@ -16,14 +15,17 @@ function ProductDetails() {
         const response = await axios.get(
           "http://localhost:3000/productsDetails",
           {
+            // Sends productName and productId to the server.
             params: {
               productName: productName,
               productId: productId,
             },
           }
         );
+        // Updates state with the fetched product data.
         setProduct(response.data);
       } catch (error) {
+        // Logs errors if the data fetch fails.
         console.error("error fetching data:", error);
       }
     };
@@ -32,11 +34,12 @@ function ProductDetails() {
   }, [productName, productId]);
 
   if (!product) {
+    // Displays a loading message if product data is not yet available.
     return <div>Loading Product Details...</div>;
   }
   const productInfo = product;
   const desc = () => {
-    setSeeMoreClicked(!isSeeMore);
+    setSeeMoreClicked(!isSeeMore);// Toggles the "See More" state for the product description.
   };
 
   const productDesc = productInfo[0].productDesc;
@@ -46,6 +49,7 @@ function ProductDetails() {
     
         {/* Class name fix */}
           <div className="product-img">
+            {/* Displays the product image. */}
             <img
               src={
                 "/productsImages/product" +

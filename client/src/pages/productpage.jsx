@@ -34,11 +34,11 @@ const Product = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/products", {
-        params: { filteringSystem },
+        params: { filteringSystem }, // Sends filtering criteria to the server.
       });
-      setProducts(response.data);
+      setProducts(response.data);// Updates state with the fetched product data.
     } catch (error) {
-      console.error("error fetching data:", error);
+      console.error("error fetching data:", error);// Logs errors if the data fetch fails.
     }
   };
   // Get reference to "All" checkbox
@@ -46,16 +46,10 @@ const Product = () => {
 
 
   useEffect(() => {
-    fetchData()
-    
-   
-   
+    fetchData();// Fetches product data when the component mounts.
   }, []);
 
   // Get all checked checkboxes (assuming class name is "checkbox")
- 
-
-
   const allCheck = (event) => {
     const categoryCheckBoxes = document.querySelectorAll(".checkbox");
     // If "All" is checked, uncheck all categories
@@ -93,6 +87,7 @@ const Product = () => {
     );
     
     var checkedValues = checkedBoxes.map((box) => box.value);
+     // Updates filtering criteria based on selected checkboxes and fetches filtered products.
     for (let i = 0; i < filteringSystem.length; i++) {
       if (
         (filteringSystem[i] !== checkedValues[i]) &

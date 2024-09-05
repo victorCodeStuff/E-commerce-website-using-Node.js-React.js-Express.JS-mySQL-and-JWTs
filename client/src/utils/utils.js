@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 
 export function getToken() {
-  let newToken = Cookie.get("token");
+  let newToken = Cookie.get("token");// Retrieves the token from cookies.
   console.log(newToken);
 }
 

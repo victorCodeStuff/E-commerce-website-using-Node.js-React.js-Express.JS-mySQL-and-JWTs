@@ -1,4 +1,4 @@
-nav {
+nav{
   position: relative;
   left: 50%;
   transform: translate(-50%);
@@ -11,6 +11,7 @@ nav {
   align-items: center;
   min-width: 45vw;
   max-width: 70vw;
+  gap: 10px;
   justify-content: space-between;
 }
 #searchWrapper,
@@ -21,7 +22,20 @@ nav {
   gap: 10px;
   padding: 0;
   font-size: 25px;
+
 }
+#userIcons > button{
+  background-color: black;
+  border: 3px solid black;
+  color: white;
+  height: 100%;  
+  transition: 1s;
+}
+#userIcons > button:hover{
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
 #principalRoutes {
   display: flex;
   justify-content: space-between;
@@ -38,6 +52,9 @@ ul > li > a:hover {
   border: 3px solid black;
   border-radius: 20px;
   padding: 3px;
+  width: 70%;
+  gap: 10px;
+  display: flex;
 }
 #searchWrapper > button,
 #searchWrapper > input {
@@ -47,42 +64,24 @@ ul > li > a:hover {
   display: flex;
   align-items: center;
 }
+#searchWrapper > input {
+  width: 50%;
+}
 
 ul {
   list-style: none;
   width: fit-content;
 }
-
-.dropbtn {
-  background-color: #000000;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
+#navButtonMobile{
+  width: 50px;
+  height: 50px;
   display: flex;
-  align-items: center;
-  transition: 2s;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
 }
-
-.dropbtn > button {
-  flex-direction: row;
+#navButtonMobile > div{
+  width: 100%;
   background-color: black;
-  border: 3px solid rgb(0, 0, 0);
-  font-weight: bolder;
-  font-size: 0px;
+  height: 10px;
 }
-
-.dropbtn:hover{
-    width: 100%;
-}
-
-.dropbtn > button:hover {
-
- 
- 
-  color: rgb(255, 255, 255);
-  font-size: 100%;
-  
-}
-
-

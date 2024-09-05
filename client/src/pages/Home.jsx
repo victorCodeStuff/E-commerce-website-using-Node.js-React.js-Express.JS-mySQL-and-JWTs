@@ -4,20 +4,25 @@ import axios from "axios";
 import "./css/productPage.css";
 import redirectClick from "../utils/utils";
 function Home() {
-  const [products, setProducts] = useState([true]);
+  const [products, setProducts] = useState([true]);// State to store product data.
+  // Array of product IDs to display.
+  /*
+  if you want to show more products or less products 
+  you can simply just put the Ids inside the array
+  */
   const productsToBeShown = ["1", "3", "4", "5"];
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/homeProducts", {
-        params: { productsToBeShown },
+        params: { productsToBeShown },// Sends product IDs to the server.
       });
-      setProducts(response.data);
+      setProducts(response.data);// Updates state with the fetched data.
     } catch (error) {
-      console.error("error fetching data:", error);
+      console.error("error fetching data:", error);// Error handling for data fetch.
     }
   };
   useEffect(() => {
-    fetchData();
+    fetchData();// Fetches data when the component is mounted.
   });
   return (
     <>
@@ -47,7 +52,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="productsHomeContainer">
+      <section className="productsHomeContainer">{/* Section displaying products */}
         {products.map((item) => (
           <div
             id={item.id}
@@ -73,15 +78,8 @@ function Home() {
               <h3>{item.price}</h3>
             </div>
           </div>
-        ))}
-      
-     
+        ))}     
       </section>
-    
-  
-	  
-    
-
 	 </>
   );
 }
