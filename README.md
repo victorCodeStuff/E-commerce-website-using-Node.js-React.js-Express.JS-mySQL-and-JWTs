@@ -119,5 +119,5 @@ Here are some key API endpoints:
 
 
 ## Video of the Project Working:
-[![Watch the video](https://img.youtube.com/vi/LliG9WdU898/maxresdefault.jpg)]([https://youtu.be/T-D1KVIuvjA](https://www.youtube.com/watch?v=LliG9WdU898))
- 
+
+[![Watch the video](https://img.youtube.com/vi/LliG9WdU898/maxresdefault.jpg)](https://www.youtube.com/watch?v=LliG9WdU898)
