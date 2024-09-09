@@ -7,7 +7,6 @@ const verifyToken = require("./auth/verifyToken.js");
 const queryProduct = require("./common/products.js");
 const queryProductDetails = require("./common/productDetails.js");
 const querySearches = require("./common/searchSystem.js");
-const getUser = require("./common/getCurrentUser.js");
 const queryCustomProducts = require("./common/customHomeProducts.js")
 
 app = express();
@@ -28,12 +27,10 @@ verifyToken(app);
 queryProduct(app);
 queryProductDetails(app);
 querySearches(app);
-getUser(app);
+
 queryCustomProducts(app);
 
-app.get("/", (req, res) => {
-  
-});
+
 
 port = process.env.PORT;
 app.listen(port, () => console.log("The server is running at " + port));
