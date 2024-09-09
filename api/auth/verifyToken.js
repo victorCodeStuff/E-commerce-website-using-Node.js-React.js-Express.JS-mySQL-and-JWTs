@@ -17,6 +17,4 @@ async function verifyToken() {
   });
 }
 
-//     res.json({ message: 'Data received successfully!' });
-
 module.exports = verifyToken;

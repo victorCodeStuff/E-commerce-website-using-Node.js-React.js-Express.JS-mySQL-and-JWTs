@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-import redirectClick from "../utils/utils";
+import redirectClick from "../utils/redirectClick.js";
+
+
 const Product = () => {
   const [products, setProducts] = useState([true]);
 

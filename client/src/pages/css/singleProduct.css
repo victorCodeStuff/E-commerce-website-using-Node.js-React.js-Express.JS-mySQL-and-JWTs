@@ -1,6 +1,6 @@
 .productDetailsWrapper {
   display: flex;
-  width: 50vw;
+  width: 70vw;
   position: absolute;
   top: 20%;
   translate: transform(-50%);
@@ -16,6 +16,9 @@
   width: 50;
 }.product-info> div > h3 {
   font-size: 30px;
+}
+.product-info> div > h2,.product-info> div > h3ss {
+  margin: 0;
 }
 .product-img  > p {
   overflow: hidden;
@@ -59,7 +62,7 @@
   .productDetailsWrapper {
     flex-direction: column;
     align-items: center;
-    width: 80vw;
+    width: 70vw;
     position: relative;
   }
 
@@ -69,5 +72,6 @@
   }
   .buyButton {
     width: 100%;
+    margin-bottom: 10px;
   }
 }

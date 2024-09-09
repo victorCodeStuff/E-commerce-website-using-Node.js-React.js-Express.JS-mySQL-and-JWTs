@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./css/productPage.css"
 
 import axios from "axios";
-import redirectClick from "../utils/utils";
+import redirectClick from "../utils/redirectClick.js";
 const Search = () => {
   const [currentProducts, setCurrentProducts] = useState([]);// State to store search results.
   const { searchKeyWord } = useParams();// Retrieves the search keyword from URL parameters.

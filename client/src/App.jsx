@@ -1,6 +1,7 @@
 import "./App.css";
 import "./pages/css/navBarStyle.css";
 import "./pages/css/multipleStyles.css";
+import { useEffect } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 // Import individual pages as components
 import Home from "./pages/Home";
@@ -14,7 +15,7 @@ import Search from "./pages/Search";
 import axios from "axios";
 import Cookie from "js-cookie";
 import React from "react";
-import { useEffect } from "react";
+
 
 // Global state variable to track user authentication status
 let currentResponse = false;

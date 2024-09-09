@@ -2,7 +2,7 @@ import "./css/home.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./css/productPage.css";
-import redirectClick from "../utils/utils";
+import redirectClick from "../utils/redirectClick.js";
 function Home() {
   const [products, setProducts] = useState([true]);// State to store product data.
   // Array of product IDs to display.

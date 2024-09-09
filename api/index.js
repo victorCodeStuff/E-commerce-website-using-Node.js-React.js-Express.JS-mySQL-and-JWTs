@@ -32,7 +32,7 @@ getUser(app);
 queryCustomProducts(app);
 
 app.get("/", (req, res) => {
-  res.send("hello");
+  
 });
 
 port = process.env.PORT;

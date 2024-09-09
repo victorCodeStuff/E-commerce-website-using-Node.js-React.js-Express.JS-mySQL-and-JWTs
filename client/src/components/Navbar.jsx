@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { logoutButton } from "../utils/utils";
-import { searchForProduct } from "../utils/utils";
+import { logoutButton } from "../utils/logoutButton";
+import { searchForProduct } from "../utils/productSearch.js";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 
