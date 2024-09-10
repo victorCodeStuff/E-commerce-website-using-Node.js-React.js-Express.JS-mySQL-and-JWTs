@@ -77,8 +77,6 @@ CREATE TABLE IF NOT EXISTS `userDB`.`userInfo` (
 
   ```
 
-  - Update the database configuration in `backend/config/config.js` with your MySQL username, password, and database name.
-
 5. **Run the development server**:
     - Backend:
       ```bash
